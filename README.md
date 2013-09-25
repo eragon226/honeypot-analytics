@@ -4,7 +4,7 @@ honeypot-analytics
 Putting data from honeynets to work - the plan is too create a platform which will allow for 
 athering as much data as possible from both captured malicious binaries and attack logs.
 
-#Honeypots:
+##Honeypots:
 
 Initial plans are too work with nepenthes, dionaea and Kippo. Possibly also Honeyd although I've never used that before.
 
@@ -25,7 +25,7 @@ and looking into malware geneology.
 3-
 More?
 
-#Plus's:
+##Plus's:
 
 Make it easy to install and setup honeypots properly - possibly fork setup scripts once they begin to become too
 project specific, leaving a barebones script for people who just want to set one up and leave it.
@@ -36,10 +36,10 @@ Should give a lot of sample code of discrete operations a lot of which are poten
 
 This is mostly just for me too learn stuff.
 
-#Technology:
+##Technology:
 
 Bash, Python, Mongodb and d3.js at the moment.
 
-#Contact:
+##Contact:
 
 @sam_bwut on twitter.
