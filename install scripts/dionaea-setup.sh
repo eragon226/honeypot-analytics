@@ -1,9 +1,11 @@
 #!/bin/sh
 
-#install dionaea and p0f
+#dionaea install script - run as ./dionaea-setup.sh "private key" "user@host"
+
+SCRIPT="#install dionaea and p0f
 sudo add-apt-repository ppa:honeynet/nightly
 sudo apt-get update
-sudo apt-get install dionaea sqlite p0f
+sudo apt-get --yes --force-yes install dionaea sqlite p0f
 
 #set up directories
 
@@ -16,16 +18,11 @@ sudo chown -R nobody:nogroup /var/dionaea/
 
 #edit config
 
-sudo rm /etc/dionaea/dionaea.conf.dist
-sudo mv dionaea.conf /etc/dionaea/dionaea.conf
-sudo dionaea -c /etc/dionaea/dionaea.conf -w /var/dionaea -u nobody -g nogroup -D
-
-#install system services
-
-sudo chmod +x /etc/init.d/p0f
-sudo chmod +x /etc/init.d/dionaea
+sudo mv /etc/dionaea/dionaea.conf.dist /etc/dionaea/dionaea.conf
+sudo sed -i 's/var\/dionaea\///g' /etc/dionaea/dionaea.conf
+sudo sed -i 's/log\//\/var\/dionaea\/log\//g' /etc/dionaea/dionaea.conf
 
 #start the honeypot
-sudo /etc/init.d/p0f start
-sudo /etc/init.d/dionaea start
+sudo dionaea -c /etc/dionaea/dionaea.conf -w /var/dionaea -u nobody -g nogroup -D"
 
+sudo ssh -o "StrictHostKeyChecking no" -i $1 $2 "${SCRIPT}"
