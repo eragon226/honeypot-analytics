@@ -1,3 +1,6 @@
+#exes
+*.exe
+
 *.py[cod]
 
 # C extensions
@@ -6,6 +9,7 @@
 # Packages
 *.egg
 *.egg-info
+pyexiftool
 dist
 build
 eggs

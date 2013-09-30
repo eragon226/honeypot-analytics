@@ -4,53 +4,44 @@ import cgi
 import hashlib
 import os
 
+path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if not path in sys.path:
+    sys.path.insert(1, path)
+del path
+
+import exiftool
+import database
+import fileTool
+
 filedir = "./binaries"
-
-def getFile(form, key):
-    if form.has_key(key):
-        item = form[key]
-        if item.file and item.filename and item.filename != "":
-            data = item.file.read()
-            filename = item.filename
-            if len(data) > 0:
-                return (data, filename)
-    return (None, None)
-
-def storeFile(data):
-	md5 = hashlib.md5(data).hexdigest()
-    try:
-        FILE = open(os.path.join(filedir, md5), "wb")
-        FILE.write(data)
-        FILE.close()
-        return True
-    except:
-        return False
-
-def fileExists(data):
-	md5 = hashlib.md5(data).hexdigest()
-    if os.path.isfile(os.path.join(filedir, md5)):
-        return True
-    return False
 
 def printHeader():
     print "content-type: text/html\n\n"
-
 
 form = cgi.FieldStorage()
 if not form:
     sys.exit()
     
-(data, filename) = getFile(form, "upfile")
+(data, filename) = fileTool.getFile(form, "upfile")
 
 printHeader()
 
 # error if there's no file
 if not data or not filename:      
     sys.exit()
-    
+con = database.connect()
+md5 =  hashlib.md5(data).hexdigest()
 # if the file already exists, we don't want it again
-if fileExists(data):
+if fileTool.fileExists(data):
     sys.exit()
 else:
-    storeFile(data)
+    fileTool.storeFile(data)
+    with exiftool.ExifTool() as et:
+    metadata = et.get_metadata(getFileName(data))
+    entry = (md5,
+        metadata['File:FileSize'],
+        metadata['File:FileModifyDate'],
+        metadata['File:FileType'],
+        metadata['File:MIMEType'])
+    database.add(con,entry)
 
