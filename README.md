@@ -2,7 +2,7 @@ honeypot-analytics
 ==================
 
 There is no stable branch at the moment as there's no real functionality.  
-Use case 1 should be fully done by 7/10 and a 0.1 bracnh will be created then.  
+Use case 1 should be fully done by 7/10 and a 0.1 branch will be created then.  
 
 Putting data from honeynets to work - the plan is too create a platform which will allow for 
 gathering as much data as possible from both captured malicious binaries and attack logs.
@@ -24,7 +24,7 @@ Gathering more data from captured binaries using sandboxes and services like Vir
   
 3-  
 Look into analysing traffic logs - using tools like snort to look at exploits used and information like geo-location.  
-Begin to take the information gathered and do some analysis on it as a whole and create some shiney d3.js pages - mapping origins of attacks,  graphing trends and looking into malware geneology.
+Begin to take the information gathered and do some analysis on it as a whole and create some shiney d3.js pages - mapping origins of attacks,  graphing trends and looking into malware genealogy.
   
 ###Plus's:  
   
