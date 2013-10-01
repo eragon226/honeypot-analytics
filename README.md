@@ -1,12 +1,15 @@
 honeypot-analytics
 ==================
 
+There is no stable branch at the moment as there's no real functionality.  
+Use case 1 should be fully done by 7/10 and a 0.1 bracnh will be created then.  
+
 Putting data from honeynets to work - the plan is too create a platform which will allow for 
 gathering as much data as possible from both captured malicious binaries and attack logs.
 
 ###Honeypots:
 
-Initial plans are too work with nepenthes, dionaea and Kippo. Possibly also Honeyd although I've never used that before.
+Initial plans are too work with nepenthes, dionaea and Kippo.
 
 ###Use Cases:
 
@@ -16,13 +19,12 @@ Aggregate binaries and logs in one place, should be doable with a simple python 
 Begin collecting data in to databases.   
   
 2 -
-Gathering more data from honeypots using tools like p0f.  
-Gathering more data from captured binaries using sandboxes, code analysers and services like Virus Total.  
-Look into analysing traffic logs - using tools like snort to look at exploits used and information like geo-location.  
-Begin to take the information gathered and do some analysis on it as a whole - mapping origins of attacks,  graphing trends and looking into malware geneology.  
+Gathering more data from honeypots using p0f.  
+Gathering more data from captured binaries using sandboxes and services like Virus Total.    
   
 3-  
-More?  
+Look into analysing traffic logs - using tools like snort to look at exploits used and information like geo-location.  
+Begin to take the information gathered and do some analysis on it as a whole and create some shiney d3.js pages - mapping origins of attacks,  graphing trends and looking into malware geneology.
   
 ###Plus's:  
   
@@ -37,7 +39,7 @@ This is mostly just for me too learn stuff.
   
 ###Technology:  
   
-Bash, Python, Mongodb and d3.js at the moment.  
+Bash, Python, Sqlite and d3.js at the moment.  
   
 ###Contact:  
   
