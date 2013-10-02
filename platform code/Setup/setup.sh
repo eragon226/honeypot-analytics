@@ -6,3 +6,6 @@ git clone git://github.com/smarnach/pyexiftool.git
 cd pyexiftool
 sudo python setup.py install
 sudo pip install web.py
+cd ..
+sudo mkdir -p ../Server/uploads/samples/
+sudo mkdir ../Server/uploads/logs/
