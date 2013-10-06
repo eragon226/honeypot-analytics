@@ -15,11 +15,5 @@ def setup():
             MIME_TYPE TEXT)""")
     return con
 
-def add(con, data):
-    with con:
-        cur = con.cursor()
-        cur.execute("INSERT INTO Samples VALUES(?,?,?,?,?)",data)
-    return
-
 def connect():
     return lite.connect('malware.db')

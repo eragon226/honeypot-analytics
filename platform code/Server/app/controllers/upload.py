@@ -1,35 +1,16 @@
-#!/usr/bin/python
 import web
-import database
 import os
 import hashlib
 import sys
 import exiftool
+import database
+import app.models.sample as sample
 
-urls = (
-	'/', 'Index',
-	'upload/log', 'Log',
-	'/upload/sample', 'Sample', 
-)
-
-class Index:
-	def GET(self):
-		web.header("Content-Type","text/html; charset=utf-8")
-		return """<html>
-		<head></head>
-		<body> Hello World </body>
-		</html>"""
-
+view = web.template.render('app/views')
 class Log:
 	def GET(self):
 		web.header("Content-Type","text/html; charset=utf-8")
-		return """<html><head></head><body>
-		<form method="POST" enctype="multipart/form-data" action="">
-		<input type="file" name="myfile" />
-		<br/>
-		<input type="submit" />
-		</form>
-		</body></html>"""
+		return view.log()
 
 	def POST(self):
 		x = web.input(myfile={})
@@ -47,13 +28,7 @@ class Log:
 class Sample:
 	def GET(self):
 		web.header("Content-Type","text/html; charset=utf-8")
-		return """<html><head></head><body>
-		<form method="POST" enctype="multipart/form-data" action="">
-		<input type="file" name="myfile" />
-		<br/>
-		<input type="submit" />
-		</form>
-		</body></html>"""
+		return view.sample()
 
 	def POST(self):
 		x = web.input(myfile={})
@@ -75,7 +50,7 @@ class Sample:
 						metadata['File:FileModifyDate'],
 						metadata['File:FileType'],
 						metadata['File:MIMEType'])
-					database.add(con,entry)
+					sample.add(con,entry)
 			raise web.seeother('/upload/sample')
 
 
@@ -83,8 +58,3 @@ def fileExists(fullPath):
 	if os.path.isfile(fullPath):
 		return True
 	return False
-
-if __name__ == "__main__":
-	database.setup()
-	app = web.application(urls, globals()) 
-	app.run()
